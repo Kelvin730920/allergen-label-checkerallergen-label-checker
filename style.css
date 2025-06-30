@@ -1,7 +1,9 @@
 
-body { font-family: Arial; padding: 20px; background: #f2f2f2; }
+body { font-family: Arial; padding: 20px; background: #f4f4f4; }
+h2 { margin-bottom: 15px; }
 .controls { margin-bottom: 20px; }
-label { margin-right: 20px; }
+label { margin-right: 15px; }
 table { width: 100%; border-collapse: collapse; background: white; }
-th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
-input[type='number'] { width: 80px; }
+th, td { border: 1px solid #ccc; padding: 6px; text-align: center; }
+input[type='number'] { width: 70px; }
+.frag2col { display: table-cell; }

@@ -1,8 +1,8 @@
 
 let data = [];
 
-function loadData(file) {
-  fetch(file).then(res => res.json()).then(json => {
+function loadData() {
+  fetch("data_tw24.json").then(res => res.json()).then(json => {
     data = json;
     render();
   });
@@ -11,29 +11,27 @@ function loadData(file) {
 function render() {
   const tbody = document.getElementById("tableBody");
   tbody.innerHTML = "";
-
   const fragCount = parseInt(document.getElementById("fragranceCount").value);
 
   data.forEach((item, idx) => {
     const row = document.createElement("tr");
-    let cells = `
+    row.innerHTML = `
       <td>${item.name}</td>
       <td>${item.cas}</td>
+      <td><input type="number" data-row="${idx}" data-frag="1" step="0.01"></td>
+      <td class="frag2"><input type="number" data-row="${idx}" data-frag="2" step="0.01" ${fragCount >= 2 ? '' : 'disabled'}></td>
+      <td id="final-${idx}">--</td>
+      <td id="label-${idx}">--</td>
     `;
-    for (let i = 1; i <= 3; i++) {
-      cells += `
-        <td class="frag${i}" style="${i <= fragCount ? '' : 'display:none'}">
-          <input type="number" data-row="${idx}" data-frag="${i}" step="0.01">
-        </td>
-      `;
-    }
-    cells += `<td id="final-${idx}">--</td><td id="label-${idx}">--</td>`;
-    row.innerHTML = cells;
     tbody.appendChild(row);
   });
 
   document.querySelectorAll("input[type='number']").forEach(input => {
     input.addEventListener("input", calculate);
+  });
+
+  document.querySelectorAll(".frag2").forEach(cell => {
+    cell.style.display = fragCount >= 2 ? "table-cell" : "none";
   });
 }
 
@@ -58,9 +56,8 @@ function calculate() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("regulation").addEventListener("change", e => loadData(e.target.value));
   document.getElementById("productType").addEventListener("change", calculate);
   document.getElementById("fragrancePercent").addEventListener("input", calculate);
   document.getElementById("fragranceCount").addEventListener("change", () => { render(); calculate(); });
-  loadData("data_eu81.json");
+  loadData();
 });

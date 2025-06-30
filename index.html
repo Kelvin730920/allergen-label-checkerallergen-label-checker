@@ -2,11 +2,12 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>過敏原標示計算器</title>
+  <title>台灣過敏原標示計算器</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
+  <h2>台灣24項過敏原標示計算器</h2>
   <div class="controls">
     <label>產品型態：
       <select id="productType">
@@ -21,13 +22,6 @@
       <select id="fragranceCount">
         <option value="1">1支</option>
         <option value="2">2支</option>
-        <option value="3">3支</option>
-      </select>
-    </label>
-    <label>法規版本：
-      <select id="regulation">
-        <option value="data_eu81.json">歐盟81項</option>
-        <option value="data_tw24.json">台灣24項</option>
       </select>
     </label>
   </div>
@@ -37,9 +31,8 @@
         <th>成分名稱</th>
         <th>CAS</th>
         <th>香精1 (%)</th>
-        <th>香精2 (%)</th>
-        <th>香精3 (%)</th>
-        <th>總成品濃度 (%)</th>
+        <th class="frag2col">香精2 (%)</th>
+        <th>成品總濃度 (%)</th>
         <th>是否需標示</th>
       </tr>
     </thead>
